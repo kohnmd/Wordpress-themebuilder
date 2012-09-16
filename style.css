@@ -1,0 +1,1065 @@
+/*
+Theme Name: Theme Builder
+Theme URI:
+Description: A theme used to build other themes.
+Version: 0.1
+Author:	Mike Kohn
+Author URI:	http://www.rhymeswithmilk.com/
+*/
+
+/*
+
+THEME COLORS
+To replace a color, just do a find-and-replace on the following values.
+	
+	#333333  .....  body (default text color)
+	#0089FF  .....  links (link, visited, hover, and active)
+	#80C3FF  .....  lighter version of links (used for author comment border)
+	#AAAAAA  .....  headers (h1, h2, etc), borders (sidebar, blog-meta)
+	#EEEEEE  .....  block backgrounds (slider, blog-meta)
+	#DDDDDD  .....  block borders (slider, blog-meta)
+
+*/
+
+
+/*********************************************************************************
+RESET
+*********************************************************************************/
+
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td { 
+	margin:0;
+	padding:0;
+}
+table {
+	border-collapse:collapse;
+	border-spacing:0;
+}
+fieldset,img { 
+	border:0;
+}
+address,caption,cite,code,dfn,em,strong,th,var {
+	font-style:normal;
+	font-weight:normal;
+}
+ol,ul {
+	list-style:none;
+}
+caption,th {
+	text-align:left;
+}
+h1,h2,h3,h4,h5,h6 {
+	font-size:100%;
+	font-weight: bold;
+}
+q:before,q:after {
+	content:'';
+}
+abbr,acronym { border:0;
+}
+
+
+
+/*********************************************************************************
+TYPOGRAPHY & GENERAL STYLES
+*********************************************************************************/
+
+html { }
+body {
+	min-width: 960px;
+	/* 0.75em sets default font size to 12px */
+	font: 0.75em/1.33em Helvetica, Arial, sans-serif;
+	color: #333;
+	background: #FFF;
+}
+#wrapper {
+	background: #FFF;
+	padding: 0 10px;
+}
+
+p {margin-bottom: 1.5em; }
+p:last-child {margin: 0; }
+
+h1,h2,h3,h4,h5,h6,
+div#site-title, div#site-description {
+	font-weight: bold;
+	color: #AAA;
+	margin: 6px 0 12px 0;
+	line-height: 1.33em;
+}
+h1, #site-title {font-size: 3.5em; }
+h2, #site-description {font-size: 2.5em; }
+h3 {font-size: 2em; }
+h4 {font-size: 1.2em; }
+h5 {font-size: 1em; }
+h6 {font-size: .9em; }
+
+a:link, a:visited, a:active {color: #0089FF; text-decoration: none; }
+a:hover {color: #0089FF; text-decoration: underline; }
+a:focus, a {-moz-outline-style: none; outline: none;}
+
+strong {font-weight: bold; }
+em {font-style: italic; }
+del {text-decoration: line-through; }
+u {text-decoration: underline; }
+
+ol {margin: 0 0 1.5em 2em; list-style-type: decimal; }
+ol > li {margin: 0 0 0.5em 0; }
+ol ol, ul ol {margin: 0.5em 0 0 2em; }
+
+
+ul {margin: 0 0 1.5em 2em; list-style-type: disc; }
+ul li {margin: 0 0 0.5em 0; }
+ul ul, ol ul {margin: 0.5em 0 0 2em; }
+
+
+/*
+ * NOTE: If you're using a background image for ul bullets,
+ *       comment out the block above and use the following styles
+ */
+/*
+ul {margin: 0 0 1.5em 0; list-style-type: none; }
+ul > li {margin: 0 0 0.5em 0; padding: 0 0 0 2em; background: url('images/bg_bullet.png') no-repeat 10px 3px; }
+ul ul, ol ul {margin: 0.5em 0 0 0; }
+*/
+
+table {margin: 0 0 1.5em 0; }
+table th {font-weight: bold;}
+table th, table td {vertical-align: top; padding: 5px 10px;}
+
+blockquote {
+	min-height: 30px;
+	padding: 4px 0 0 30px;
+	margin: 0 3em 1.5em 3em;
+	background: url('images/bg_blockquote.png') no-repeat left top;
+}
+blockquote p:last-child {
+	margin: 0;
+}
+
+.assistive-text {
+	position: absolute !important;
+	clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+	clip: rect(1px, 1px, 1px, 1px);
+}
+
+/******* GENERIC FORM ELEMENTS (note: Contact Form 7 specific styling located farther down in this file) *******/
+
+input,
+textarea {
+	/* the font specification is to prevent textareas from defauting to a monotype font */
+	font: 1em Helvetica, Arial, sans-serif;
+	padding: 2px;
+	background: #FFF;
+	border: 1px solid #DDD;
+}
+input:focus,
+textarea:focus {
+	outline: none;
+	box-shadow: inset 0 1px 2px rgba(0,0,0,0.3);
+	border-color: #0089FF;
+}
+input[type=submit],
+input[type=button] {
+	/* I took the following gradient code from a button on Google+, so you know it's legit. */
+	background-color: #0089FF;
+	background-image: -webkit-linear-gradient(top,#0089FF,#007AE6);
+	background-image: -moz-linear-gradient(top,#0089FF,#007AE6);
+	background-image: -ms-linear-gradient(top,#0089FF,#007AE6);
+	background-image: -o-linear-gradient(top,#0089FF,#007AE6);
+	background-image: linear-gradient(top,#0089FF,#007AE6);
+	padding: 8px 12px;
+	font-weight: bold;
+	color: #FFF;
+	text-shadow: 0 1px rgba(0, 0, 0, 0.3);
+	cursor: pointer;
+	border:1px solid #3079ed;
+}
+input[type=submit]:focus,
+input[type=submit]:hover,
+input[type=button]:focus,
+input[type=button]:hover {
+	background-color: #007AE6;
+	background-image: -webkit-linear-gradient(top,#0089FF,#006DCC);
+	background-image: -moz-linear-gradient(top,#0089FF,#006DCC);
+	background-image: -ms-linear-gradient(top,#0089FF,#006DCC);
+	background-image: -o-linear-gradient(top,#0089FF,#006DCC);
+	background-image: linear-gradient(top,#0089FF,#006DCC);
+}
+
+
+/*********************************************************************************
+WORDPRESS CORE STYLES
+*********************************************************************************/
+
+.alignnone {
+    margin: 5px 20px 20px 0;
+}
+
+.aligncenter,
+div.aligncenter {
+    display: block;
+    margin: 5px auto 5px auto;
+}
+
+.alignright {
+    float:right;
+    margin: 5px 0 20px 20px;
+}
+
+.alignleft {
+    float: left;
+    margin: 5px 20px 20px 0;
+}
+
+.aligncenter {
+    display: block;
+    margin: 5px auto 5px auto;
+}
+
+a img.alignright {
+    float: right;
+    margin: 5px 0 20px 20px;
+}
+
+a img.alignnone {
+    margin: 5px 20px 20px 0;
+}
+
+a img.alignleft {
+    float: left;
+    margin: 5px 20px 20px 0;
+}
+
+a img.aligncenter {
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+
+.wp-caption {
+    background: #fff;
+    border: 1px solid #f0f0f0;
+    max-width: 96%; /* Image does not overflow the content area */
+    padding: 5px 3px 10px;
+    text-align: center;
+}
+
+.wp-caption.alignnone {
+    margin: 5px 20px 20px 0;
+}
+
+.wp-caption.alignleft {
+    margin: 5px 20px 20px 0;
+}
+
+.wp-caption.alignright {
+    margin: 5px 0 20px 20px;
+}
+
+.wp-caption img {
+    border: 0 none;
+    height: auto;
+    margin: 0;
+    max-width: 98.5%;
+    padding: 0;
+    width: auto;
+}
+
+.wp-caption p.wp-caption-text {
+    font-size: 11px;
+    line-height: 17px;
+    margin: 0;
+    padding: 0 4px 5px;
+}
+
+
+/*********************************************************************************
+960 GRID - 12 COLUMNS
+*********************************************************************************/
+
+.container_12 {margin-left: auto; margin-right: auto; width: 960px;}
+
+/******* GRID > GLOBAL *******/
+.grid_1,.grid_2,.grid_3,.grid_4,.grid_5,.grid_6,.grid_7,.grid_8,.grid_9,.grid_10,.grid_11,.grid_12{
+	display: inline;
+	float: left;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.push_1,.pull_1,.push_2,.pull_2,.push_3,.pull_3,.push_4,.pull_4,.push_5,.pull_5,.push_6,.pull_6,.push_7,.pull_7,.push_8,.pull_8,.push_9,.pull_9,.push_10,.pull_10,.push_11,.pull_11{
+  position: relative;
+}
+
+/******* GRID > Children (Alpha = First, Omega = Last) *******/
+.alpha {margin-left: 0;}
+.omega {margin-right: 0;}
+.no-margin { margin-left: 0; margin-right: 0; }
+
+/******* GRID > 12 COLUMNS *******/
+.grid_1 {width:60px;}
+.grid_2 {width:140px;}
+.grid_3 {width: 220px;}
+.grid_4 {width: 300px;}
+.grid_5 {width: 380px;}
+.grid_6 {width: 460px;}
+.grid_7 {width: 540px;}
+.grid_8 {width: 620px;}
+.grid_9 {width: 700px;}
+.grid_10 {width: 780px;}
+.grid_11 {width: 860px;}
+.grid_12 {width: 940px;}
+
+/******* PREFIX EXTRA SPACE ******/
+.prefix_1 {padding-left: 80px;}
+.prefix_2 {padding-left: 160px;}
+.prefix_3 {padding-left: 240px;}
+.prefix_4 {padding-left: 320px;}
+.prefix_5 {padding-left: 400px;}
+.prefix_6 {padding-left: 480px;}
+.prefix_7 {padding-left: 560px;}
+.prefix_8 {padding-left: 640px;}
+.prefix_9 {padding-left: 720px;}
+.prefix_10 {padding-left: 800px;}
+.prefix_11 {padding-left: 880px;}
+
+/******* SUFFIX EXTRA SPACE *******/
+.sufix_1 {padding-right: 80px;}
+.sufix_2 {padding-right: 160px;}
+.sufix_3 {padding-right: 240px;}
+.sufix_4 {padding-right: 320px;}
+.sufix_5 {padding-right: 400px;}
+.sufix_6 {padding-right: 480px;}
+.sufix_7 {padding-right: 560px;}
+.sufix_8 {padding-right: 640px;}
+.sufix_9 {padding-right: 720px;}
+.sufix_10 {padding-right: 800px;}
+.sufix_11 {padding-right: 880px;}
+
+/******* PUSH SPACE *******/
+.push_1 {left: 80px;}
+.push_2 {left: 160px;}
+.push_3 {left: 240px;}
+.push_4 {left: 320px;}
+.push_5 {left: 400px;}
+.push_6 {left: 480px;}
+.push_7 {left: 560px;}
+.push_8 {left: 640px;}
+.push_9 {left: 720px;}
+.push_10 {left: 800px;}
+.push_11 {left: 880px;}
+
+/******* PULL SPACE *******/
+.pull_1 {left: -80px;}
+.pull_2 {left: -160px;}
+.pull_3 {left: -240px;}
+.pull_4 {left: -320px;}
+.pull_5 {left: -400px;}
+.pull_6 {left: -480px;}
+.pull_7 {left: -560px;}
+.pull_8 {left: -640px;}
+.pull_9 {left: -720px;}
+.pull_10 {left: -800px;}
+.pull_11 {left: -880px;}
+
+/******* CLEAR FLOATING ELEMENTS *******/
+/* http://sonspring.com/journal/clearing-floats */
+.clear {clear: both; display: block; overflow: hidden; visibility: hidden; width: 0; height: 0;}
+/* http://www.yuiblog.com/blog/2010/09/27/clearfix-reloaded-overflowhidden-demystified */
+.clearfix:before, .clearfix:after, .container_12:before, .container_12:after {content: '.'; display: block; overflow: hidden; visibility: hidden; font-size: 0; line-height: 0; width: 0; height: 0;}
+.clearfix:after, .container_12:after {clear: both;}
+/* The following zoom:1 rule is specifically for IE6 + IE7. Move to separate stylesheet if invalid CSS is a problem. */
+.clearfix, .container_12 {zoom: 1;}
+
+/*********************************************************************************
+HEADER
+*********************************************************************************/
+
+#top {
+	margin-bottom: 20px;
+}
+
+/******* NAVIGATION *******/
+
+/*
+ * NOTE: These styles account for both when a menu is built
+ *       in the admin ( #header-menu div ul.main_menu )
+ *       and when one is automatically generated ( #header-menu div.main_menu ul )
+ */
+ 
+#header-menu {
+	border: 1px solid #0089FF;
+}
+
+#header-menu ul {
+	margin: 0;
+	list-style: none;
+}
+
+.main_menu li {
+	margin: 0;
+	padding: 0;
+	position: relative;
+	background: none;
+}
+
+.main_menu a {
+	line-height: 1.334em;
+	display: block;
+	padding: 10px 20px;
+}
+
+.main_menu a:hover {
+	text-decoration: none;
+}
+
+.main_menu > ul > li,
+.main_menu > li {
+	float: left;
+}
+
+.main_menu li:hover > a{
+	background: #EEE;
+}
+
+.main_menu ul.children,
+.main_menu ul.sub-menu {
+	display: none;
+	float: left;
+	width: 240px;
+	position: absolute;
+	top: 36px; /* line-height + padding */
+	left: 0;
+	z-index: 9999;
+	box-shadow: 0 3px 3px rgba(0,0,0,0.2);
+	background: #FAFAFA;
+	border: 1px solid #DDD;
+	border-top: 1px solid #0089FF;
+}
+
+.main_menu ul.children ul.children,
+.main_menu ul.sub-menu ul.sub-menu {
+	top: -1px;
+	left: 240px; /* width of ul.children or ul.sub-menu (including borders) */
+}
+
+.main_menu ul.children li,
+.main_menu ul.sub-menu li {
+	clear: both;
+}
+
+.main_menu ul.children a,
+.main_menu ul.sub-menu a {
+	border-bottom: 1px solid #DDD;
+}
+
+.main_menu ul.children .last a,
+.main_menu ul.sub-menu .last a {
+	border-bottom: 0;
+}
+
+.main_menu li:hover > ul.children,
+.main_menu li:hover > ul.sub-menu {
+	display: block;
+}
+
+
+/*********************************************************************************
+MAIN CONTENT
+*********************************************************************************/
+
+#crumbs {
+	text-align: left;
+}
+
+#middle {
+	margin-bottom: 20px;
+}
+
+
+/*********************************************************************************
+HOMEPAGE
+*********************************************************************************/
+
+/******* NIVO SLIDER *******/
+
+#main-slider {
+	padding: 9px 9px 39px 9px;
+	margin: 0 auto 20px auto;
+	background: #EEEEEE;
+	border: 1px solid #DDD;
+}
+
+#main-slider .nivo-controlNav {
+	height: 10px;
+	position: absolute;
+	bottom: -25px;
+	z-index: 100;
+}
+
+#main-slider .nivo-controlNav  a {
+	display: block;
+	height: 12px;
+	width: 12px;
+	float: left;
+	margin: 0 8px 0 0;
+	text-indent: -9999px;
+	border-radius: 6px;
+	background: #DDD;
+	box-shadow: inset 1px 1px 2px rgba(0,0,0,0.5),
+				1px 1px 0px #FFF;
+}
+
+#main-slider .nivo-controlNav  a:hover {	background: #AAA; }
+#main-slider .nivo-controlNav  a.active,
+#main-slider .nivo-controlNav  a.active:hover {	background: #0089FF; }
+
+#main-slider .nivo-directionNav {
+	position: absolute;
+	bottom: -31px;
+	right: 0;
+	z-index: 99;
+}
+
+#main-slider .nivo-directionNav a {
+	position: static;
+	height: 22px;
+	width: 18px;
+	display: inline-block;
+	margin-left: 10px;
+	text-indent: -9999px;
+	background-image: url('images/bg_controls.png');
+	background-repeat: no-repeat;
+}
+
+#main-slider .nivo-directionNav a.nivo-prevNav { background-position: left top; }
+#main-slider .nivo-directionNav a.nivo-prevNav:hover { background-position: left bottom; }
+#main-slider .nivo-directionNav a.nivo-nextNav {	background-position: right top; }
+#main-slider .nivo-directionNav a.nivo-nextNav:hover {	background-position: right bottom; }
+
+/*
+#main-slider .nivo-directionNav a {
+	top: auto;
+	bottom: 10%;
+	display: block;
+	height: 16px;
+	width: 16px;
+	border: 1px solid #DDD;
+	background: #EEE;
+}
+
+#main-slider .nivo-directionNav a.nivo-prevNav {
+	padding: 20px 0 20px 10px;
+	left: -36px;
+	border-radius: 28px 0 0 28px;
+	border-right: 0;
+}
+
+#main-slider .nivo-directionNav a.nivo-nextNav {
+	padding: 20px 10px 20px 0;
+	right: -36px;
+	border-radius: 0 28px 28px 0;
+	border-left: 0;
+}
+*/
+
+/******* HOME BLOCKS *******/
+
+.home-block {
+	margin: 0 auto 20px auto;
+}
+
+/*********************************************************************************
+INTERIOR PAGES
+*********************************************************************************/
+
+/******* BREADCRUMBS *******/
+
+#crumbs {
+	text-align: right;
+	font-size: 0.9em;
+}
+
+/* LIST */
+
+ul#crumbs {
+	float: right;
+	margin: 0 10px 0 0;
+	list-style: none;
+}
+
+#crumbs li {
+	float: left;
+	margin: 0 10px 0 0;
+	padding: 0 10px 0 0;
+	background: none;
+	border-right: 1px solid #AAA;
+}
+
+#crumbs li.last {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+/* INLINE */
+
+div#crumbs {
+	margin: 0 10px 0 0;
+}
+
+
+/*********************************************************************************
+BLOG STYLES
+*********************************************************************************/
+
+.blog-post {
+	margin-bottom: 2em;
+}
+
+#blog-list .blog-post {
+	padding-bottom: 2.5em;
+	border-bottom: 1px solid #AAA;
+}
+
+#blog-list .blog-post.last {
+	padding-bottom: 0;
+	margin-bottom: 0;
+	border-bottom: 0;
+}
+
+.blog-content {
+	margin-bottom: 1.5em;
+}
+
+.blog-meta {
+	padding: 1em;
+	background: #EEE;
+	border: 1px solid #DDD;
+}
+
+#blog-list .blog-post.last,
+.blog-meta li.last,
+.blog-meta ul,
+.blog-meta li,
+.comment-links,
+.comment-links li,
+.comment-links li.last {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	background: none;
+	border: 0;
+}
+
+.blog-meta li,
+.comment-links li {
+	display: inline-block;
+	padding-right: 1em;
+	margin-right: 1em;
+	border-right: 1px solid #AAA;
+}
+
+.blog-meta .tags-list a {
+	white-space: nowrap;
+}
+
+
+/******* COMMENTS *******/
+
+ol.commentlist{
+	margin: 0;
+	list-style: none;
+	font-size: 0.95em;
+}
+
+.commentlist > li {
+	margin: 0;
+}
+
+.commentlist ul.children > li {
+	padding: 0;
+	margin: 0 0 0.5em 2em;
+	background: none;
+}
+
+article.comment {
+	padding: 1em;
+	margin: 0 0 2em 0;
+	border: 1px solid #DDD;
+	border-left: 2px solid #AAA;
+	background: #F9F9F9;
+}
+
+.commentlist li.bypostauthor > article.comment {
+	border: 1px solid #80C3FF;
+	border-left: 2px solid #0089FF;
+}
+
+.comment-meta {
+	margin: 0 0 0.75em 0;
+}
+
+.comment-meta h4{
+	margin: 0;
+	float: left;
+	font-size: 1.2em;
+}
+
+span.comment-date {
+	display: block;
+	float: right;
+}
+
+.comment-content p {
+	margin-bottom: 0.75em;
+}
+
+#respond {
+	width: 700px;
+}
+
+.commentlist #respond { /* this is only triggered during a reply */
+	margin: 0 0 4em 0;
+	font-size: 1.05em;
+}
+
+.commentlist li #respond{ }
+.commentlist li li #respond { margin-left: -2em; }
+.commentlist li li li #respond { margin-left: -4em; }
+.commentlist li li li li #respond { margin-left: -6em; }
+.commentlist li li li li li #respond { margin-left: -8em; }
+.commentlist li li li li li li #respond { margin-left: -10em; }
+
+.commentlist #cancel-comment-reply-link {
+	display: inline-block;
+	float: right;
+	font-size: 0.55em;
+	font-weight: normal;
+}
+
+h3#reply-title {
+	margin-top: 0;
+}
+
+.comment-form-input {
+	margin-bottom: 1.5em;
+}
+
+.comment-form-input input {
+	width: 214px;
+}
+
+.comment-form-comment textarea {
+	width: 694px;
+}
+
+p.comment-notes {
+	margin-top: 0.3em;
+}
+
+p.form-submit {
+	margin: 0;
+}
+
+
+/*********************************************************************************
+GALLERY
+*********************************************************************************/
+
+.gallery-item {
+	float: left;
+	margin-bottom: 1em;
+	text-align: center;
+}
+
+.gallery-columns-3 .gallery-item { width: 33%; }
+.gallery-columns-4 .gallery-item { width: 25%; }
+.gallery-columns-5 .gallery-item { width: 20%; }
+
+.gallery img {
+	max-width: 90%;
+	height: auto;
+	padding: 4px;
+	background: #EEE;
+	border: 1px solid #DDD;
+}
+
+.gallery .gallery-caption {
+	max-width: 150px;
+	margin: 0 auto;
+	font-size: 0.95em;
+	line-height: 1.2em;
+	color: #777;
+}
+
+.entry + .bio-gallery {
+	margin-top: 1.5em;
+}
+
+
+/*********************************************************************************
+SINGLE-PLAIN STYLES (for bios gallery lightboxes)
+*********************************************************************************/
+
+body.plain {
+	min-width: 0;
+	width: 600px;
+}
+
+#wrapper-plain {
+	padding: 0 10px;
+	background: #FFF;
+}
+
+#wrapper-plain:focus {
+	outline: none;
+}
+
+#wrapper-plain #plain-content {
+	padding: 0 0 12px 0;
+}
+
+/******* CSS Styles that are needed by jScrollPane for it to operate correctly. *******/
+
+.jspContainer {
+	overflow: hidden;
+	position: relative;
+}
+
+.jspPane {
+	position: absolute;
+}
+
+.jspVerticalBar {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 10px;
+	height: 100%;
+}
+
+.jspHorizontalBar {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 16px;
+}
+
+.jspVerticalBar *,
+.jspHorizontalBar * {
+	margin: 0;
+	padding: 0;
+}
+
+.jspCap {
+	display: none;
+}
+
+.jspHorizontalBar .jspCap {
+	float: left;
+}
+
+.jspTrack {
+	background: #D0D0D0;
+	position: relative;
+}
+
+.jspDrag {
+	background: #0089FF;
+	position: relative;
+	top: 0;
+	left: 0;
+	cursor: pointer;
+}
+
+.jspHorizontalBar .jspTrack,
+.jspHorizontalBar .jspDrag {
+	float: left;
+	height: 100%;
+}
+
+.jspArrow {
+	background: #50506d;
+	text-indent: -20000px;
+	display: block;
+	cursor: pointer;
+}
+
+.jspArrow.jspDisabled {
+	cursor: default;
+	background: #80808d;
+}
+
+.jspVerticalBar .jspArrow {
+	height: 16px;
+}
+
+.jspHorizontalBar .jspArrow {
+	width: 16px;
+	float: left;
+	height: 100%;
+}
+
+.jspVerticalBar .jspArrow:focus {
+	outline: none;
+}
+
+.jspCorner {
+	background: #eeeef4;
+	float: left;
+	height: 100%;
+}
+
+/* Yuk! CSS Hack for IE6 3 pixel bug :( */
+* html .jspCorner {
+	margin: 0 -3px 0 0;
+}
+
+
+/*********************************************************************************
+CONTACT FORM 7
+Modified version of CF7's default stylesheet
+*********************************************************************************/
+
+div.wpcf7 td.label {
+	text-align: right;
+	min-width: 150px;
+}
+
+div.wpcf7 span.required {
+	color: #FF4500;
+}
+
+div.wpcf7-response-output {
+	margin: 2em 0.5em 1em;
+	padding: 0.2em 1em;
+}
+
+div.wpcf7-mail-sent-ok {
+	border: 2px solid #398f14;
+}
+
+div.wpcf7-mail-sent-ng {
+	border: 2px solid #ff0000;
+}
+
+div.wpcf7-spam-blocked {
+	border: 2px solid #ffa500;
+}
+
+div.wpcf7-validation-errors {
+	border: 2px solid #f7e700;
+}
+
+span.wpcf7-form-control-wrap {
+	position: relative;
+}
+
+span.wpcf7-not-valid-tip {
+	position: absolute;
+	top: 20%;
+	left: 20%;
+	z-index: 100;
+	background: #fff;
+	border: 1px solid #ff0000;
+	font-size: 10pt;
+	width: 280px;
+	padding: 2px;
+}
+
+span.wpcf7-not-valid-tip-no-ajax {
+	color: #f00;
+	font-size: 10pt;
+	display: block;
+}
+
+span.wpcf7-list-item {
+	margin-left: 0.5em;
+}
+
+.wpcf7-display-none {
+	display: none;
+}
+
+div.wpcf7 img.ajax-loader {
+	border: none;
+	vertical-align: middle;
+	margin-left: 4px;
+}
+
+div.wpcf7 .watermark {
+	color: #AAA;
+}
+
+
+/*********************************************************************************
+COLORBOX
+Taken (then modified) from http://www.jacklmoore.com/colorbox
+*********************************************************************************/
+/*
+ * ColorBox Core Style:
+ * The following CSS is consistent between example themes and should not be altered.
+ */
+#colorbox, #cboxOverlay, #cboxWrapper{position:absolute; top:0; left:0; z-index:9999; overflow:hidden;}
+#cboxOverlay{position:fixed; width:100%; height:100%;}
+#cboxMiddleLeft, #cboxBottomLeft{clear:left;}
+#cboxContent{position:relative;}
+#cboxLoadedContent{overflow:auto;}
+#cboxTitle{margin:0;}
+#cboxLoadingOverlay, #cboxLoadingGraphic{position:absolute; top:0; left:0; width:100%; height:100%;}
+#cboxPrevious, #cboxNext, #cboxClose, #cboxSlideshow{cursor:pointer;}
+.cboxPhoto{float:left; margin:auto; border:0; display:block; max-width: none;}
+.cboxIframe{width:100%; height:100%; display:block; border:0;}
+#colorbox, #cboxContent, #cboxLoadedContent{box-sizing:content-box;}
+
+/* 
+ * User Style:
+ * Change the following styles to modify the appearance of ColorBox.  They are
+ * ordered & tabbed in a way that represents the nesting of the generated HTML.
+ */
+#cboxOverlay{background:#000;}
+#colorbox{}
+	#cboxWrapper{ background:#EEE;}
+		#cboxTopLeft, #cboxTopCenter, #cboxTopRight {height: 5px; background: #EEE;}
+		#cboxMiddleLeft { width: 5px; bakcground: #EEE; }
+		#cboxContent{}
+			.cboxIframe{background:#fff;}
+			#cboxError{padding:50px; border:1px solid #ccc;}
+			#cboxLoadedContent{margin-bottom: 50px;}
+			#cboxTitle{position:relative; top:-45px; left:0; margin: 0 93px 0 0; line-height: 20px; }
+			#cboxCurrent{position:absolute; bottom:14px; right:28px; height: 22px; width:32px; text-align: center; line-height:22px; font-weight: bold;}
+			#cboxSlideshow{position:absolute; top:-20px; right:90px; color:#FFF;}
+			#cboxPrevious{position:absolute; bottom:14px; right:65px; background:url('images/bg_controls.png') no-repeat top left; width:18px; height:22px; text-indent:-9999px;}
+			#cboxPrevious:hover{background-position:bottom left;}
+			#cboxNext{position:absolute; bottom:14px; right:5px; background:url('images/bg_controls.png') no-repeat top right; width:18px; height:22px; text-indent:-9999px;}
+			#cboxNext:hover{background-position:bottom right;}
+			#cboxLoadingOverlay{background:#EEE;}
+			#cboxLoadingGraphic{background:url('images/loading.gif') no-repeat center center;}
+			#cboxClose{position:absolute; top:-5px; right:-5px; display:block; background:url('images/bg_controls.png') no-repeat center top; width:28px; height:28px; text-indent:-9999px;}
+			#cboxClose:hover{background-position:center bottom;}
+		#cboxMiddleRight { width: 5px; bakcground: #EEE; }
+
+
+/*********************************************************************************
+SIDEBAR
+*********************************************************************************/
+
+#sidebar aside {
+	padding: 0 0 20px 0;
+	margin: 0 0 20px 0;
+	border-bottom: 1px solid #AAA;
+}
+
+#sidebar aside.last {
+	border-bottom: 0;
+}
+
+
+/*********************************************************************************
+FOOTER
+*********************************************************************************/
+
+#bottom {
+}
