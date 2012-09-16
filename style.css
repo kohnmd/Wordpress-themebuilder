@@ -670,11 +670,15 @@ BLOG STYLES
 ol.commentlist{
 	margin: 0;
 	list-style: none;
-	font-size: 0.95em;
 }
 
 .commentlist > li {
 	margin: 0;
+}
+
+.commentlist ul.children {
+	margin-left: 0;
+	list-style-type: none;
 }
 
 .commentlist ul.children > li {
@@ -686,6 +690,7 @@ ol.commentlist{
 article.comment {
 	padding: 1em;
 	margin: 0 0 2em 0;
+	font-size: 0.95em;
 	border: 1px solid #DDD;
 	border-left: 2px solid #AAA;
 	background: #F9F9F9;
@@ -721,7 +726,6 @@ span.comment-date {
 
 .commentlist #respond { /* this is only triggered during a reply */
 	margin: 0 0 4em 0;
-	font-size: 1.05em;
 }
 
 .commentlist li #respond{ }
