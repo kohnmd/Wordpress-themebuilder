@@ -54,6 +54,13 @@ function themebuilder_scripts_method() {
 	wp_enqueue_script( 'jquery' );
 	wp_register_script( 'modernizr', $protocol . '://cdnjs.cloudflare.com/ajax/libs/modernizr/2.0.6/modernizr.min.js');
 	wp_enqueue_script( 'modernizr' );
+	if($protocol == 'https') {
+		wp_register_script( 'sharethis', $protocol . '://ws.sharethis.com/button/buttons.js');
+	} else {
+		wp_register_script( 'sharethis', $protocol . '://w.sharethis.com/button/buttons.js');
+	}
+	wp_enqueue_script( 'sharethis' );
+	
 	
 	// footer scripts
 	wp_register_script( 'colorbox', get_bloginfo('template_url').'/js/jquery.colorbox-min.js', array('jquery'), '1.0', TRUE);
@@ -451,6 +458,106 @@ function themebuilder_breadcrumbs() {
 	}
 }
 // end themebuilder_breadcrumbs()
+
+
+
+//*********************************************************************************
+// Pagination Links
+// Older & slightly modified version of WP-Paginate by Eric Martin:
+// http://www.ericmmartin.com/projects/wp-paginate/
+//*********************************************************************************
+
+function themebuilder_paginate($args = null) {
+	$defaults = array(
+	    'query' => 'wp_query',
+		'page' => null, 'pages' => null, 
+		'range' => 2, 'gap' => 1, 'anchor' => 1,
+		'before' => '<div class="pagination">', 'after' => '</div>',
+		'title' => __('Pages<br />'),
+		'nextpage' => __('older &raquo;'), 'previouspage' => __('&laquo; newer'),
+		'echo' => 1
+	);
+
+	$r = wp_parse_args($args, $defaults);
+	extract($r, EXTR_SKIP);
+
+	if (!$page && !$pages) {
+		global $$query;
+		
+		$page = get_query_var('paged');
+		$page = !empty($page) ? intval($page) : 1;
+
+		$posts_per_page = intval(get_query_var('posts_per_page'));
+		$pages = intval(ceil($$query->found_posts / $posts_per_page));
+	}
+	
+	$output = "";
+	if ($pages > 1) {	
+		$output .= "$before<span class='pages-title'>$title</span>";
+		$ellipsis = "<span class='pages-gap'>...</span>";
+
+		if ($page > 1 && !empty($previouspage)) {
+			$output .= "<a href='" . get_pagenum_link($page - 1) . "' class='pages-prev'>$previouspage</a>";
+		}
+		
+		$min_links = $range * 2 + 1;
+		$block_min = min($page - $range, $pages - $min_links);
+		$block_high = max($page + $range, $min_links);
+		$left_gap = (($block_min - $anchor - $gap) > 0) ? true : false;
+		$right_gap = (($block_high + $anchor + $gap) < $pages) ? true : false;
+
+		if ($left_gap && !$right_gap) {
+			$output .= sprintf('%s%s%s', 
+				themebuilder_paginate_loop(1, $anchor), 
+				$ellipsis, 
+				themebuilder_paginate_loop($block_min, $pages, $page)
+			);
+		}
+		else if ($left_gap && $right_gap) {
+			$output .= sprintf('%s%s%s%s%s', 
+				themebuilder_paginate_loop(1, $anchor), 
+				$ellipsis, 
+				themebuilder_paginate_loop($block_min, $block_high, $page), 
+				$ellipsis, 
+				themebuilder_paginate_loop(($pages - $anchor + 1), $pages)
+			);
+		}
+		else if ($right_gap && !$left_gap) {
+			$output .= sprintf('%s%s%s', 
+				themebuilder_paginate_loop(1, $block_high, $page),
+				$ellipsis,
+				themebuilder_paginate_loop(($pages - $anchor + 1), $pages)
+			);
+		}
+		else {
+			$output .= themebuilder_paginate_loop(1, $pages, $page);
+		}
+
+		if ($page < $pages && !empty($nextpage)) {
+			$output .= "<a href='" . get_pagenum_link($page + 1) . "' class='pages-next'>$nextpage</a>";
+		}
+
+		$output .= $after;
+	}
+
+	if ($echo) {
+		echo $output;
+	}
+
+	return $output;
+}
+
+
+function themebuilder_paginate_loop($start, $max, $page = 0) {
+	$output = "";
+	for ($i = $start; $i <= $max; $i++) {
+		$output .= ($page === intval($i)) 
+			? "<span class='pages-page pages-current'>$i</span>" 
+			: "<a href='" . get_pagenum_link($i) . "' class='pages-page'>$i</a>";
+	}
+	return $output;
+}
+
 
 
 //*********************************************************************************

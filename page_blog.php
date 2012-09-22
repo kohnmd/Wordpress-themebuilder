@@ -71,7 +71,13 @@ get_header(); ?>
 				<?php endif; // ends if blog_query->have_posts ?>
 		
 			</section><!-- .blog-list -->
-		
+			
+			<div class="pagination-links">
+    			<?php themebuilder_paginate(array('query'=>'blog_query')); // outputs pagination links for the blog_query object ?>
+			</div>
+			
+			<?php wp_reset_postdata(); ?>
+			
 		<?php else : // else if !$category ?>
 			<div class="entry blog-content">
 				<p>There are currently no posts. Check back soon!</p>

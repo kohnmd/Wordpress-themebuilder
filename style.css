@@ -15,6 +15,7 @@ To replace a color, just do a find-and-replace on the following values.
 	#333333  .....  body (default text color)
 	#0089FF  .....  links (link, visited, hover, and active)
 	#80C3FF  .....  lighter version of links (used for author comment border)
+	#DC143C  .....  required text (crimson)
 	#AAAAAA  .....  headers (h1, h2, etc), borders (sidebar, blog-meta)
 	#EEEEEE  .....  block backgrounds (slider, blog-meta)
 	#DDDDDD  .....  block borders (slider, blog-meta)
@@ -136,7 +137,8 @@ blockquote p:last-child {
 	margin: 0;
 }
 
-.assistive-text {
+.assistive-text,
+.screen-reader-text {
 	position: absolute !important;
 	clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
 	clip: rect(1px, 1px, 1px, 1px);
@@ -158,6 +160,12 @@ textarea:focus {
 	box-shadow: inset 0 1px 2px rgba(0,0,0,0.3);
 	border-color: #0089FF;
 }
+input[type=file],
+input[type=file]:focus {
+	padding: 0;
+	box-shadow: 0;
+	border: 0;
+}
 input[type=submit],
 input[type=button] {
 	/* I took the following gradient code from a button on Google+, so you know it's legit. */
@@ -167,6 +175,7 @@ input[type=button] {
 	background-image: -ms-linear-gradient(top,#0089FF,#007AE6);
 	background-image: -o-linear-gradient(top,#0089FF,#007AE6);
 	background-image: linear-gradient(top,#0089FF,#007AE6);
+	margin-top: 1em;
 	padding: 8px 12px;
 	font-weight: bold;
 	color: #FFF;
@@ -379,6 +388,82 @@ HEADER
 	margin-bottom: 20px;
 }
 
+
+/******* SOCIAL ICONS *******/
+
+.header-social {
+	float: right;
+	margin: 1em 0 0 0;
+}
+
+.header-social a,
+.header-social .st_sharethis_custom {
+	display: block;
+	float: left;
+	margin: 0 0 0 6px;
+	padding: 0;
+	text-indent: -999em;
+	font-size: 0;
+	line-height: 0;
+	cursor: pointer;
+	background-repeat: no-repeat;
+}
+
+/* 32 x 32 social icons */
+
+.header-social.size-32 a,
+.header-social.size-32 .st_sharethis_custom {
+	height: 32px;
+	width: 32px;
+	background-image: url('images/bg_sprite_social_32.png');
+}
+.header-social.size-32 a.facebook 			{ background-position: 0px    0px; }
+.header-social.size-32 a.twitter	  			{ background-position: 0px  -37px; }
+.header-social.size-32 a.twitter-alt 		{ background-position: 0px  -74px; }
+.header-social.size-32 .st_sharethis_custom	{ background-position: 0px -111px; }
+.header-social.size-32 a.rss 				{ background-position: 0px -148px; }
+.header-social.size-32 a.youtube 			{ background-position: 0px -185px; }
+.header-social.size-32 a.linkedin 			{ background-position: 0px -222px; }
+.header-social.size-32 a.vimeo 				{ background-position: 0px -259px; }
+.header-social.size-32 a.flickr 				{ background-position: 0px -296px; }
+.header-social.size-32 a.gplus 				{ background-position: 0px -333px; }
+.header-social.size-32 a.gplus-alt 			{ background-position: 0px -370px; }
+.header-social.size-32 a.pinterest 			{ background-position: 0px -407px; }
+
+/* 16 x 16 social icons */
+
+.header-social.size-16 a,
+.header-social.size-16 .st_sharethis_custom {
+	height: 16px;
+	width: 16px;
+	background-image: url('images/bg_sprite_social_16.png');
+}
+.header-social.size-16 a.facebook 			{ background-position: 0px    0px; }
+.header-social.size-16 a.twitter	  			{ background-position: 0px  -21px; }
+.header-social.size-16 a.twitter-alt 		{ background-position: 0px  -42px; }
+.header-social.size-16 .st_sharethis_custom	{ background-position: 0px  -63px; }
+.header-social.size-16 a.rss 				{ background-position: 0px  -84px; }
+.header-social.size-16 a.youtube 			{ background-position: 0px -105px; }
+.header-social.size-16 a.linkedin 			{ background-position: 0px -126px; }
+.header-social.size-16 a.vimeo 				{ background-position: 0px -147px; }
+.header-social.size-16 a.flickr 				{ background-position: 0px -168px; }
+.header-social.size-16 a.gplus 				{ background-position: 0px -189px; }
+.header-social.size-16 a.gplus-alt 			{ background-position: 0px -210px; }
+.header-social.size-16 a.pinterest 			{ background-position: 0px -231px; }
+
+
+/******* SEARCH *******/
+
+.header-search {
+	float: right;
+	margin: 1em 0;
+}
+
+#top #searchsubmit {
+	margin-top: 0;
+	padding: 2px 5px;
+}
+
 /******* NAVIGATION *******/
 
 /*
@@ -503,7 +588,7 @@ HOMEPAGE
 	width: 12px;
 	float: left;
 	margin: 0 8px 0 0;
-	text-indent: -9999px;
+	text-indent: -999em;
 	border-radius: 6px;
 	background: #DDD;
 	box-shadow: inset 1px 1px 2px rgba(0,0,0,0.5),
@@ -527,7 +612,7 @@ HOMEPAGE
 	width: 18px;
 	display: inline-block;
 	margin-left: 10px;
-	text-indent: -9999px;
+	text-indent: -999em;
 	background-image: url('images/bg_controls.png');
 	background-repeat: no-repeat;
 }
@@ -886,7 +971,7 @@ body.plain {
 
 .jspArrow {
 	background: #50506d;
-	text-indent: -20000px;
+	text-indent: -999em;
 	display: block;
 	cursor: pointer;
 }
@@ -933,11 +1018,28 @@ div.wpcf7 td.label {
 }
 
 div.wpcf7 span.required {
-	color: #FF4500;
+	color: #DC143C;
 }
 
+div.wpcf7 input.wpcf7-text 		 { width: 220px; }
+div.wpcf7 input.wpcf7-text.small     { width: 160px; }
+div.wpcf7 input.wpcf7-text.smaller  { width: 90px;  }
+div.wpcf7 input.wpcf7-text.smallest { width: 40px;  }
+
+div.wpcf7 span.wpcf7-list-item {
+	display: block;
+	margin: 0 0 0.5em 0;
+}
+
+/*
+div.wpcf7 span .wpcf7-text.wpcf7-not-valid,
+div.wpcf7 span .wpcf7-textarea.wpcf7-not-valid {
+	border-color: #DC143C;
+}
+*/
+
 div.wpcf7-response-output {
-	margin: 2em 0.5em 1em;
+	margin: 1em 0.5em;
 	padding: 0.2em 1em;
 }
 
@@ -966,8 +1068,8 @@ span.wpcf7-not-valid-tip {
 	top: 20%;
 	left: 20%;
 	z-index: 100;
-	background: #fff;
-	border: 1px solid #ff0000;
+	background: #FFF;
+	border: 1px solid #DC143C;
 	font-size: 10pt;
 	width: 280px;
 	padding: 2px;
@@ -977,10 +1079,6 @@ span.wpcf7-not-valid-tip-no-ajax {
 	color: #f00;
 	font-size: 10pt;
 	display: block;
-}
-
-span.wpcf7-list-item {
-	margin-left: 0.5em;
 }
 
 .wpcf7-display-none {
@@ -1035,13 +1133,13 @@ Taken (then modified) from http://www.jacklmoore.com/colorbox
 			#cboxTitle{position:relative; top:-45px; left:0; margin: 0 93px 0 0; line-height: 20px; }
 			#cboxCurrent{position:absolute; bottom:14px; right:28px; height: 22px; width:32px; text-align: center; line-height:22px; font-weight: bold;}
 			#cboxSlideshow{position:absolute; top:-20px; right:90px; color:#FFF;}
-			#cboxPrevious{position:absolute; bottom:14px; right:65px; background:url('images/bg_controls.png') no-repeat top left; width:18px; height:22px; text-indent:-9999px;}
+			#cboxPrevious{position:absolute; bottom:14px; right:65px; background:url('images/bg_controls.png') no-repeat top left; width:18px; height:22px; text-indent:-999em;}
 			#cboxPrevious:hover{background-position:bottom left;}
-			#cboxNext{position:absolute; bottom:14px; right:5px; background:url('images/bg_controls.png') no-repeat top right; width:18px; height:22px; text-indent:-9999px;}
+			#cboxNext{position:absolute; bottom:14px; right:5px; background:url('images/bg_controls.png') no-repeat top right; width:18px; height:22px; text-indent:-999em;}
 			#cboxNext:hover{background-position:bottom right;}
 			#cboxLoadingOverlay{background:#EEE;}
 			#cboxLoadingGraphic{background:url('images/loading.gif') no-repeat center center;}
-			#cboxClose{position:absolute; top:-5px; right:-5px; display:block; background:url('images/bg_controls.png') no-repeat center top; width:28px; height:28px; text-indent:-9999px;}
+			#cboxClose{position:absolute; top:-5px; right:-5px; display:block; background:url('images/bg_controls.png') no-repeat center top; width:28px; height:28px; text-indent:-999em;}
 			#cboxClose:hover{background-position:center bottom;}
 		#cboxMiddleRight { width: 5px; bakcground: #EEE; }
 

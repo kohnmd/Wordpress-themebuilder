@@ -2,6 +2,7 @@
 // It contains misc helper scripts specific to this theme.
 //*********************************************************************************
 
+
 jQuery(document).ready(function($){
 	
 	//*********************************************************************************
@@ -124,4 +125,15 @@ jQuery(document).ready(function($){
 	add_first_last_classes( blog_meta );
 	add_first_last_classes( comment_links );
 	
+});
+
+
+//*********************************************************************************
+// Stuff that doesn't need to be loaded in the document.ready section goes here.
+// Let's start off with the ShareThis stuff.
+//*********************************************************************************
+
+stLight.options({
+	publisher: "b751caf0-606d-4e9e-8f14-c82ff55c091c",
+	onhover: false
 });
