@@ -105,6 +105,9 @@ add_theme_support( 'automatic-feed-links' );
 // Remove inline CSS from photo galleries
 add_filter('use_default_gallery_style', '__return_false');
 
+// Adds custom stylesheet to admin WYSIWYG
+add_editor_style('style-editor.css');
+
 
 //*********************************************************************************
 // Register sidebar widgets, menu nav, and custom post types
@@ -113,18 +116,18 @@ add_filter('use_default_gallery_style', '__return_false');
 add_theme_support( 'post-thumbnails' ); 
 
 register_sidebar(array(
-	'name' => 'Sidebar',
-	'id' => 'whole_sidebar',
+	'name' => 'Main Sidebar',
+	'id' => 'main_sidebar',
 	'description' => '',
-	'before_widget' => '<div class="widget">',
-	'after_widget' => '</div>',
-	'before_title' => '<h3>',
+	'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+	'after_widget' => '</aside>',
+	'before_title' => '<h3 class="widget-title">',
 	'after_title' => '</h3>',
 ));
 
 function themebuilder_register_menus() {
 	register_nav_menus(array(
-		  'menu_top' => 'Top Menu',
+		  //'menu_top' => 'Top Menu',
 		  'menu_header' => 'Beneath Header',
 		  'menu_footer' => 'Footer Menu'
 	));

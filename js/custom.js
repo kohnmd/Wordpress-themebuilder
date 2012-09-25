@@ -3,13 +3,29 @@
 //*********************************************************************************
 
 
+//*********************************************************************************
+// Stuff that doesn't need to be loaded in the document.ready section goes here.
+// Let's start off with the ShareThis stuff.
+//*********************************************************************************
+
+stLight.options({
+	publisher: "b751caf0-606d-4e9e-8f14-c82ff55c091c",
+	onhover: false
+});
+
+
+//*********************************************************************************
+// Now for the document.ready stuff
+//*********************************************************************************
+
 jQuery(document).ready(function($){
 	
 	//*********************************************************************************
 	// First, set some variables that might be used a few times in this document.
 	//*********************************************************************************
-	main_menu = $('#header-menu > div.main_menu > ul, #header-menu > ul.main_menu');
+	main_menu = $('#header-menu > div.main_menu > ul, #header-menu ul.main_menu');
 	sub_menus = $('ul.children, ul.subchildren', main_menu);
+	footer_menu = $('#bottom #footer-menu ul.menu_footer');
 	sidebar = $('#sidebar');
 	breadcrumbs = $('#crumbs');
 	blog_posts = $('#blog-list');
@@ -18,7 +34,7 @@ jQuery(document).ready(function($){
 	
 	//*********************************************************************************
 	// A few menu changes:
-	// - Add home link
+	// - Add home link to main menu
 	// - Add class to dropdown li's with flyout submenus
 	//*********************************************************************************
 	main_menu.prepend(
@@ -27,10 +43,10 @@ jQuery(document).ready(function($){
 	$('ul.children, ul.sub-menu', sub_menus).parent('li').addClass('with-sub');
 	
 	
-	//*************************************************
+	//*********************************************************************************
 	// INSTANTIATE COLORBOX
-	//*************************************************
-	// This first line automatically adds rel=colorbox to images inside of anchors
+	//*********************************************************************************
+	// This first line automatically adds rel=colorbox to anchors linking to images
 	$('a[href$="jpg"], a[href$="jpeg"], a[href$="png"], a[href$="gif"]').attr('rel', 'colorbox');
 	$('.bio-gallery a').attr('rel','colorbox-bio-gallery');
 	$('.bio-gallery a').has('img').attr('rel','colorbox-bio-gallery2');
@@ -55,61 +71,6 @@ jQuery(document).ready(function($){
 	});
 	
 	
-	//*************************************************
-	// ADDS PLACEHOLDERS TO INPUTS FOR SHITTY BROWSERS
-	//*************************************************
-
-	$.placeholder = function() {
-		// ALL NON-PASSWORD PLACEHOLDERS
-		$('input[type!="password"]').focus(function() {
-			var input = $(this);
-			if (input.hasClass('placeholder')) {
-				input.val('');
-				input.removeClass('placeholder');
-			}
-		}).blur(function() {
-			var input = $(this);
-				if (input.val() === '') {
-					input.addClass('placeholder');
-					input.val(input.attr('placeholder'));
-				}
-		}).blur().parents('form').submit(function() {
-			$(this).find('[placeholder]').each(function() {
-				var input = $(this);
-				if (input.hasClass('placeholder')) {
-					input.val('');
-				}
-			});
-		});
-		
-		// PASSWORD PLACEHOLDERS
-		$('input[type="password"],').each(function() {
-			var input = $(this);
-			input.after('<input id="'+input.attr('id')+'-faux" style="display:none;" type="text" value="' + input.attr('placeholder') + '" />');
-			var faux = $('#'+input.attr('id')+'-faux');
-			
-			faux.show().attr('class', input.attr('class')).attr('style', input.attr('style'));
-			faux.addClass('placeholder');
-			input.hide();
-			
-			faux.focus(function() {
-				faux.hide();
-				input.show().focus();
-			});
-			input.blur(function() {
-				if(input.val() === '') {
-					input.hide();
-					faux.show();
-				}
-			});
-		});
-
-		// Clear input on refresh so that the placeholder class gets added back
-		$(window).unload(function() {
-			$('[placeholder]').val('');
-		});
-	};
-	
 	//*********************************************************************************
 	// Add first & last classes to various items.
 	//*********************************************************************************
@@ -119,21 +80,17 @@ jQuery(document).ready(function($){
 	}
 	add_first_last_classes( main_menu );
 	add_first_last_classes( sub_menus );
+	add_first_last_classes( footer_menu );
 	add_first_last_classes( sidebar );
 	add_first_last_classes( breadcrumbs );
 	add_first_last_classes( blog_posts );
 	add_first_last_classes( blog_meta );
 	add_first_last_classes( comment_links );
 	
-});
-
-
-//*********************************************************************************
-// Stuff that doesn't need to be loaded in the document.ready section goes here.
-// Let's start off with the ShareThis stuff.
-//*********************************************************************************
-
-stLight.options({
-	publisher: "b751caf0-606d-4e9e-8f14-c82ff55c091c",
-	onhover: false
+	
+	//*********************************************************************************
+	// Misc
+	//*********************************************************************************
+	// Add your own jQuery stuff here.
+	
 });
