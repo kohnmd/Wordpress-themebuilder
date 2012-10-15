@@ -3,7 +3,9 @@
 //*********************************************************************************
 
 if(is_admin()) {
-    wp_enqueue_script('jquery-ui-sortable');
+	// This is called incorrectly.
+	// It should be called using add_action('wp_enqueue_scripts'...
+    //wp_enqueue_script('jquery-ui-sortable');
 }
 
 // This function adds the menu item to the WordPress sidebar.

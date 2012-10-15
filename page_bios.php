@@ -64,9 +64,12 @@ get_header(); ?>
 					</dl>
 				<?php
 				endwhile; // ends bio_query loop
-					if($i != 0) { // add final <br> if it wasn't already added
-						echo '<br class="clear" />';
-					}
+				wp_reset_postdata();
+				wp_reset_query();
+				
+				if($i != 0) { // add final <br> if it wasn't already added
+					echo '<br class="clear" />';
+				}
 				?>
 				<script type="text/javascript">
 					// adds parameters to the colorbox hrefs to let the single.php page know that we want to display the simple layout. 

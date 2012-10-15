@@ -25,10 +25,12 @@ jQuery(document).ready(function($){
 	//*********************************************************************************
 	main_menu = $('#header-menu > div.main_menu > ul, #header-menu ul.main_menu');
 	sub_menus = $('ul.children, ul.subchildren', main_menu);
+	top_menu = $('#top #top-menu ul.menu_top');
 	footer_menu = $('#bottom #footer-menu ul.menu_footer');
 	sidebar = $('#sidebar');
 	breadcrumbs = $('#crumbs');
 	blog_posts = $('#blog-list');
+	news_posts = $('#news-list');
 	blog_meta = $('.blog-meta ul');
 	comment_links = $('.comment-links');
 	
@@ -80,10 +82,12 @@ jQuery(document).ready(function($){
 	}
 	add_first_last_classes( main_menu );
 	add_first_last_classes( sub_menus );
+	add_first_last_classes( top_menu );
 	add_first_last_classes( footer_menu );
 	add_first_last_classes( sidebar );
 	add_first_last_classes( breadcrumbs );
 	add_first_last_classes( blog_posts );
+	add_first_last_classes( news_posts );
 	add_first_last_classes( blog_meta );
 	add_first_last_classes( comment_links );
 	

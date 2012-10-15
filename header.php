@@ -55,7 +55,7 @@
 						
 						// bloginfo( 'name' );
 						?>
-						<img src="<?php bloginfo('template_url'); ?>/images/themebuilder_logo.png" height="102" width="280" id="logo" alt="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" />
+						<img src="<?php bloginfo('template_url'); ?>/images/themebuilder_logo.png" height="103" width="282" id="logo" alt="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" />
 					</a>
 				</<?php title_container(); ?>>
 				<?php
@@ -71,6 +71,26 @@
 			</hgroup>
 			
 			<div id="header-right" class="grid_6">
+				<?php
+				// Where the "Top Menu" navigation is included.
+				// Navigation should be built in wp-admin >> Appearance >> Menus.
+				// If no menu has been built, $$menu_top == false.
+				$menu_top = wp_nav_menu(
+					array(
+						'theme_location' => 'menu_top',
+						'menu_class' => 'menu_top',
+						'fallback_cb' => false,
+						'echo' => false
+					)
+				);
+				?>
+				<?php if($menu_top) { ?>
+					<div id="top-menu">
+						<?php echo $menu_top; ?>
+					</div><!-- #footer-menu -->
+				<?php } ?>
+				
+				
 				<?php
 				// The only difference between the following sets of social icons
 				// is the size-## class. By changing between 32 and 16, the icons
@@ -128,7 +148,7 @@
 				// Navigation should be built in wp-admin >> Appearance >> Menus.
 				// NOTES: custom.js will automatically add a home link to the menu, so no need to include it yourself.
 				//		  Also, if you don't want to build the menu in the admin, this will automatically render one based on the page structure.
-				wp_nav_menu( array( 'theme_location' => 'menu_header',  'menu_class' => 'main_menu', ) );
+				wp_nav_menu( array( 'theme_location' => 'menu_header',  'menu_class' => 'main_menu' ) );
 				?>
 				<div class="clear"></div>
 			</nav><!-- #header-menu -->

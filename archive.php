@@ -27,33 +27,37 @@ get_header(); ?>
 				if($paged > 1) echo ' &ndash; Page ' . $paged;
 			?></h1>
 		</header>
-
-		<section id="blog-list">
-			<?php if(have_posts()) : while(have_posts()) : the_post(); ?>	
-				
-				<article class="blog-post">
-					<header>
-						<h2 class="blog-title"><a href="<?php the_permalink(); ?>" rel="bookmark" title="Permalink to <?php the_title_attribute(); ?>"><?php the_title(); ?></a></h2>
-					</header>
-					<div class="entry blog-content">
-						<?php the_content(); ?>
-					</div><!-- .blog-content -->
-					
-					<?php
-					// This grabs the blog-meta footer from the includes-meta.php file.
-					// The exact same meta is used both here and in the page_blog.php file,
-					// so this makes it easier to update it since it lives in just one place.
-					get_template_part('includes', 'meta');
-					?>
-				</article><!-- .entry.blog-post -->
-				
-			<?php endwhile; // ends blog post loop ?>
-			<?php else : // else if !have_posts ?>
-				<div class="entry blog-content">
-					<p>There are currently no posts. Check back soon!</p>
-				</div>
-			<?php endif; // ends if have_posts ?>
-		</section><!-- .blog-list -->
+		
+		<?php if(have_posts()) : ?>
+			
+			<section id="blog-list">
+				<?php while(have_posts()) : the_post(); ?>	
+					<article class="blog-post">
+						<header>
+							<h2 class="blog-title"><a href="<?php the_permalink(); ?>" rel="bookmark" title="Permalink to <?php the_title_attribute(); ?>"><?php the_title(); ?></a></h2>
+						</header>
+						<div class="entry blog-content">
+							<?php the_content(); ?>
+						</div><!-- .blog-content -->
+						
+						<?php
+						// This grabs the blog-meta footer from the includes-meta.php file.
+						// The exact same meta is used both here and in the page_blog.php file,
+						// so this makes it easier to update it since it lives in just one place.
+						get_template_part('includes', 'meta');
+						?>
+					</article><!-- .entry.blog-post -->
+				<?php endwhile; // ends blog post loop ?>
+				<?php themebuilder_paginate(array('query'=>'blog_query')); // outputs pagination links for the blog_query object ?>
+			</section><!-- #blog-list -->
+			
+		<?php else : // else if !have_posts ?>
+			
+			<div class="entry blog-content">
+				<p>There are currently no posts. Check back soon!</p>
+			</div>
+		
+		<?php endif; // ends if have_posts ?>
 		
 	</section><!-- #main -->
 

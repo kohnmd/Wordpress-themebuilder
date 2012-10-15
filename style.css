@@ -2,9 +2,11 @@
 Theme Name: ThemeBuilder
 Theme URI:
 Description: The theme you use to build other themes.
-Version: 0.1
 Author:	Mike Kohn
 Author URI:	http://www.rhymeswithmilk.com/
+Version: 0.1
+Tags: white, blue, two-columns, right-sidebar, fixed-width, custom-menu, editor-style, developer, minimal, sandbox
+
 */
 
 /*
@@ -398,7 +400,7 @@ HEADER
 *********************************************************************************/
 
 #top {
-	margin-bottom: 20px;
+	margin-bottom: 2em;
 }
 
 #site-title {
@@ -484,12 +486,17 @@ img#logo {
 	padding: 2px 5px;
 }
 
-/******* NAVIGATION *******/
 
-/*
+/*********************************************************************************
+MENUS
+*********************************************************************************/
+
+/******* MAIN NAVIGATION *******/
+
+/**
  * NOTE: These styles account for both when a menu is built
- *       in the admin ( #header-menu div ul.main_menu )
- *       and when one is automatically generated ( #header-menu div.main_menu ul )
+ * in the admin ( #header-menu div ul.main_menu ) and when
+ * one is automatically generated ( #header-menu div.main_menu ul )
  */
  
 #header-menu {
@@ -568,6 +575,59 @@ img#logo {
 	display: block;
 }
 
+/******* TOP & FOOTER SECONDARY MENUS *******/
+/**
+ * These guys share a lot of the same styles,
+ * so they're lumped together here.
+ */
+
+#top-menu ul.menu_top,
+#footer-menu ul.menu_footer {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	font-size: 0.9em;
+}
+
+#top-menu {
+	margin: 1em 0 0 0;
+}
+
+#top-menu ul.menu_top {
+	text-align: right;
+}
+
+#top-menu ul.menu_top li {
+	margin: 0 0 0 10px;
+	padding: 0 0 0 10px;
+	display: inline-block;
+	background: none;
+	border-left: 1px solid #AAA;
+}
+
+#footer-menu ul.menu_footer li {
+	margin: 0 10px 0 0;
+	padding: 0 10px 0 0;
+	display: inline-block;
+	background: none;
+	border-right: 1px solid #AAA;
+}
+
+#top-menu ul.menu_top li.first,
+#footer-menu ul.menu_footer li.last {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+/* fallback duplication of the above if classes are not properly set */
+#top-menu ul.menu_top li:first-child,
+#footer-menu ul.menu_footer li:last-child {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
 
 /*********************************************************************************
 MAIN CONTENT
@@ -578,7 +638,7 @@ MAIN CONTENT
 }
 
 #middle {
-	margin-bottom: 20px;
+	margin-bottom: 2em;
 }
 
 
@@ -590,7 +650,7 @@ HOMEPAGE
 
 #main-slider {
 	padding: 9px 9px 39px 9px;
-	margin: 0 auto 20px auto;
+	margin: 0 auto 2em auto;
 	background: #EEEEEE;
 	border: 1px solid #DDD;
 }
@@ -671,7 +731,7 @@ HOMEPAGE
 /******* HOME BLOCKS *******/
 
 .home-block {
-	margin: 0 auto 20px auto;
+	margin: 0 auto 2em auto;
 }
 
 /*********************************************************************************
@@ -715,7 +775,7 @@ div#crumbs {
 
 
 /*********************************************************************************
-BLOG STYLES
+BLOG/NEWS STYLES
 *********************************************************************************/
 
 .blog-post {
@@ -723,7 +783,7 @@ BLOG STYLES
 }
 
 #blog-list .blog-post {
-	padding-bottom: 2.5em;
+	padding-bottom: 2em;
 	border-bottom: 1px solid #AAA;
 }
 
@@ -767,6 +827,14 @@ BLOG STYLES
 
 .blog-meta .tags-list a {
 	white-space: nowrap;
+}
+
+#news-list .news-post {
+	margin-bottom: 2em;
+}
+
+#news-list .news-post.last {
+	margin-bottom: 0;
 }
 
 
@@ -869,6 +937,66 @@ p.comment-notes {
 
 p.form-submit {
 	margin: 0;
+}
+
+
+/******* PAGINATION *******/
+
+#pagination {
+	margin-top: 2em;
+	padding-top: 2em;
+	border-top: 1px solid #AAA;
+}
+
+#pagination ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+#pagination li {
+	display: inline-block;
+	margin: 0 0.5em 0 0;
+}
+
+#pagination li a {
+	display: inline-block;
+	padding: 5px 6px;
+	color: #000;
+	text-shadow: 0 1px rgba(255, 255, 255, 0.8);
+	border: 1px solid #DDD;
+	
+	background-color: #F9F9F9;
+	background-image: -webkit-linear-gradient(top,#F9F9F9,#EEE);
+	background-image: -moz-linear-gradient(top,#F9F9F9,#EEE);
+	background-image: -ms-linear-gradient(top,#F9F9F9,#EEE);
+	background-image: -o-linear-gradient(top,#F9F9F9,#EEE);
+	background-image: linear-gradient(top,#F9F9F9,#EEE);
+}
+
+#pagination li a:hover {
+	text-decoration: none;
+	
+	background-color: #F0F0F0;
+	background-image: -webkit-linear-gradient(top,#F0F0F0,#E9E9E9);
+	background-image: -moz-linear-gradient(top,#F0F0F0,#E9E9E9);
+	background-image: -ms-linear-gradient(top,#F0F0F0,#E9E9E9);
+	background-image: -o-linear-gradient(top,#F0F0F0,#E9E9E9);
+	background-image: linear-gradient(top,#F0F0F0,#E9E9E9);
+}
+
+#pagination li.pages-current {
+	padding: 5px 6px;
+	color: #FFF;
+	text-shadow: 0 1px rgba(0, 0, 0, 0.3);
+	border:1px solid #3079ed;
+	
+	background-color: #0089FF;
+	background-image: -webkit-linear-gradient(top,#0089FF,#007AE6);
+	background-image: -moz-linear-gradient(top,#0089FF,#007AE6);
+	background-image: -ms-linear-gradient(top,#0089FF,#007AE6);
+	background-image: -o-linear-gradient(top,#0089FF,#007AE6);
+	background-image: linear-gradient(top,#0089FF,#007AE6);
 }
 
 
@@ -1170,44 +1298,46 @@ SIDEBAR
 *********************************************************************************/
 
 #sidebar aside {
-	padding: 0 0 20px 0;
-	margin: 0 0 20px 0;
+	padding: 0 0 2em 0;
+	margin: 0 0 2em 0;
 	border-bottom: 1px solid #AAA;
 }
 
 #sidebar aside.last {
+	padding-bottom: 0;
+	margin-bottom: 0;
 	border-bottom: 0;
 }
 
-#sidebar .widget_nav_menu ul.menu {
+#sidebar ul.menu {
 	margin: 0;
 	padding: 0;
 	list-style: none;
 }
 
-#sidebar .widget_nav_menu ul.menu ul {
+#sidebar ul.menu ul {
 	margin: 0 0 0 2em;
 	padding: 0;
 	list-style: none;
 }
 
-#sidebar .widget_nav_menu ul.menu li {
+#sidebar ul.menu li {
 	margin: 0;
 	padding: 0;
 	background: none;
 }
 
-#sidebar .widget_nav_menu ul.menu ul li {
+#sidebar ul.menu ul li {
 	margin-left: 
 }
 
-#sidebar .widget_nav_menu ul.menu a {
+#sidebar ul.menu a {
 	display: block;
 	padding: 6px 0 6px 1.5em;
 	background: url('images/bg_sidebar_arrow.png') no-repeat left 11px;
 }
 
-#sidebar .widget_nav_menu ul.menu li.current_page_item > a {
+#sidebar ul.menu li.current_page_item > a {
 	background-position: left -38px;
 }
 
@@ -1216,31 +1346,14 @@ SIDEBAR
 FOOTER
 *********************************************************************************/
 
+/* See "MENUS" section above for footer menu styles */
+
 #bottom {
-	margin: 20px auto 0 auto;
+	margin: 2em auto 0 auto;
 	padding: 1em 0;
 	background: #EEE;
 	border-top: 1px solid #DDD;
 	border-bottom: 1px solid #DDD;
-}
-
-#footer-menu ul.menu_footer {
-	list-style: none;
-	margin: 0;
-	padding: 0;
-	font-size: 0.9em;
-}
-
-#footer-menu ul.menu_footer li {
-	margin: 0 10px 0 0;
-	padding: 0 10px 0 0;
-	display: inline-block;
-	background: none;
-	border-right: 1px solid #AAA;
-}
-
-#footer-menu ul.menu_footer li.last {
-	border-right: 0;
 }
 
 #copy {

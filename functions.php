@@ -7,8 +7,6 @@ TO DO:
 
 
 SHORT-TERM
-- style contact form 7
-- add footer
 - add sidebar content
 
 
@@ -127,7 +125,7 @@ register_sidebar(array(
 
 function themebuilder_register_menus() {
 	register_nav_menus(array(
-		  //'menu_top' => 'Top Menu',
+		  'menu_top' => 'Top Menu',
 		  'menu_header' => 'Beneath Header',
 		  'menu_footer' => 'Footer Menu'
 	));
@@ -473,10 +471,14 @@ function themebuilder_breadcrumbs() {
 function themebuilder_paginate($args = null) {
 	$defaults = array(
 	    'query' => 'wp_query',
-		'page' => null, 'pages' => null, 
-		'range' => 2, 'gap' => 1, 'anchor' => 1,
-		'before' => '<div class="pagination">', 'after' => '</div>',
-		'title' => __('Pages<br />'),
+		'page' => null,
+		'pages' => null, 
+		'range' => 2,
+		'gap' => 1,
+		'anchor' => 1,
+		'before' => '<div id="pagination">',
+		'after' => '</div><!-- .pagination -->',
+		//'title' => false, // no longer used
 		'nextpage' => __('older &raquo;'), 'previouspage' => __('&laquo; newer'),
 		'echo' => 1
 	);
@@ -495,52 +497,51 @@ function themebuilder_paginate($args = null) {
 	}
 	
 	$output = "";
-	if ($pages > 1) {	
-		$output .= "$before<span class='pages-title'>$title</span>";
-		$ellipsis = "<span class='pages-gap'>...</span>";
+	if ($pages > 1) {
+		$output = $before . '<ul>';
+			$ellipsis = '<li class="pages-gap">...</li>';
 
-		if ($page > 1 && !empty($previouspage)) {
-			$output .= "<a href='" . get_pagenum_link($page - 1) . "' class='pages-prev'>$previouspage</a>";
-		}
-		
-		$min_links = $range * 2 + 1;
-		$block_min = min($page - $range, $pages - $min_links);
-		$block_high = max($page + $range, $min_links);
-		$left_gap = (($block_min - $anchor - $gap) > 0) ? true : false;
-		$right_gap = (($block_high + $anchor + $gap) < $pages) ? true : false;
+			if ($page > 1 && !empty($previouspage)) {
+				$output .= '<li class="pages-prev"><a href="' . get_pagenum_link($page - 1) . '">' . $previouspage . '</a></li>';
+			}
+			
+			$min_links = $range * 2 + 1;
+			$block_min = min($page - $range, $pages - $min_links);
+			$block_high = max($page + $range, $min_links);
+			$left_gap = (($block_min - $anchor - $gap) > 0) ? true : false;
+			$right_gap = (($block_high + $anchor + $gap) < $pages) ? true : false;
 
-		if ($left_gap && !$right_gap) {
-			$output .= sprintf('%s%s%s', 
-				themebuilder_paginate_loop(1, $anchor), 
-				$ellipsis, 
-				themebuilder_paginate_loop($block_min, $pages, $page)
-			);
-		}
-		else if ($left_gap && $right_gap) {
-			$output .= sprintf('%s%s%s%s%s', 
-				themebuilder_paginate_loop(1, $anchor), 
-				$ellipsis, 
-				themebuilder_paginate_loop($block_min, $block_high, $page), 
-				$ellipsis, 
-				themebuilder_paginate_loop(($pages - $anchor + 1), $pages)
-			);
-		}
-		else if ($right_gap && !$left_gap) {
-			$output .= sprintf('%s%s%s', 
-				themebuilder_paginate_loop(1, $block_high, $page),
-				$ellipsis,
-				themebuilder_paginate_loop(($pages - $anchor + 1), $pages)
-			);
-		}
-		else {
-			$output .= themebuilder_paginate_loop(1, $pages, $page);
-		}
+			if ($left_gap && !$right_gap) {
+				$output .= sprintf('%s%s%s', 
+					themebuilder_paginate_loop(1, $anchor), 
+					$ellipsis, 
+					themebuilder_paginate_loop($block_min, $pages, $page)
+				);
+			}
+			else if ($left_gap && $right_gap) {
+				$output .= sprintf('%s%s%s%s%s', 
+					themebuilder_paginate_loop(1, $anchor), 
+					$ellipsis, 
+					themebuilder_paginate_loop($block_min, $block_high, $page), 
+					$ellipsis, 
+					themebuilder_paginate_loop(($pages - $anchor + 1), $pages)
+				);
+			}
+			else if ($right_gap && !$left_gap) {
+				$output .= sprintf('%s%s%s', 
+					themebuilder_paginate_loop(1, $block_high, $page),
+					$ellipsis,
+					themebuilder_paginate_loop(($pages - $anchor + 1), $pages)
+				);
+			}
+			else {
+				$output .= themebuilder_paginate_loop(1, $pages, $page);
+			}
 
-		if ($page < $pages && !empty($nextpage)) {
-			$output .= "<a href='" . get_pagenum_link($page + 1) . "' class='pages-next'>$nextpage</a>";
-		}
-
-		$output .= $after;
+			if ($page < $pages && !empty($nextpage)) {
+				$output .= '<li class="pages-next"><a href="' . get_pagenum_link($page + 1) . '">' . $nextpage . '</a></li>';
+			}
+		$output .= '</ul>' . $after;
 	}
 
 	if ($echo) {
@@ -555,8 +556,8 @@ function themebuilder_paginate_loop($start, $max, $page = 0) {
 	$output = "";
 	for ($i = $start; $i <= $max; $i++) {
 		$output .= ($page === intval($i)) 
-			? "<span class='pages-page pages-current'>$i</span>" 
-			: "<a href='" . get_pagenum_link($i) . "' class='pages-page'>$i</a>";
+			? '<li class="pages-page pages-current">' . $i . '</li>'
+			: '<li class="pages-page"><a href="' . get_pagenum_link($i) . '">' . $i . '</a></li>';
 	}
 	return $output;
 }
