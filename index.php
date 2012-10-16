@@ -18,6 +18,7 @@ if(class_exists('WordpressNivoSlider') && post_type_exists('nivoslider')) {
 } // ends if nivo slider plugin exists
 ?>
 	
+	<h1 class="grid_12">Layout and Typographical Element Styles</h1>
 	
 	<section class="home-block container_12">
 		<div class="home-widget grid_6">

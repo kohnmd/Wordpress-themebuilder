@@ -5,23 +5,22 @@
 /*
 TO DO:
 
-
 SHORT-TERM
-- add sidebar content
+
+1. Add support for featured images in page and single templates.
 
 
 LONG-TERM
 
 1. Create admin page with checklist of things to do when first setting up theme:
-	- Nivo Slider
-	- All in One SEO
+	- Plugins to install
 	- Update permalink structure
 	- Update timezone in general settings
-	- Create custom menu
+	- Create header/main/footer menus
 
-2. Lock down theme so that error displays if directory or theme name has changed.
+2. Create import/export of theme options.
 
-3. Create import/export of theme options.
+3. Incorporate more slider options.
 
 */
 
@@ -30,7 +29,11 @@ LONG-TERM
 // Include extra function files
 //*********************************************************************************
 
-require_once('includes/admin_menu.php');
+// NOTE: This is only here for future planning. The admin menu doesn't
+//       currently have anything except for testing content. It should not
+//       be included in its current state.
+
+//require_once('includes/admin_menu.php');
 
 
 
