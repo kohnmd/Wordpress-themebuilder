@@ -779,11 +779,13 @@ div#crumbs {
 BLOG/NEWS STYLES
 *********************************************************************************/
 
-.blog-post {
+.blog-post,
+.entry.blog-intro {
 	margin-bottom: 2em;
 }
 
-#blog-list .blog-post {
+#blog-list .blog-post,
+.entry.blog-intro {
 	padding-bottom: 2em;
 	border-bottom: 1px solid #AAA;
 }

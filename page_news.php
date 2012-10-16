@@ -25,7 +25,7 @@ get_header(); ?>
 		<?php // This displays the page content if content is entered into the main page editor. ?>
 		<?php if(have_posts()) : while(have_posts()) : the_post(); ?>				
 			<?php if(trim(get_the_content()) != "") { ?>
-				<div class="entry">
+				<div class="entry blog-intro">
 					<?php the_content(); ?>
 					<?php edit_post_link('edit', '<p>', '</p>'); ?>
 				</div>
