@@ -2,11 +2,10 @@
 /*
  * Template Name: News
  *
- * This template is used for a listing of news
- * articles or press releases. It's meant to be
- * used in conjunction with Advanced Custom Fields
- * which should be used to define external links
- * for the titles to link to.
+ * This template is used for a listing of news articles or press
+ * releases. It's meant to be used in conjunction with custom fields
+ * or a custom metabox which should be used to define external links
+ * for the titles to link to. See note below.
  *
  */
 
@@ -49,10 +48,20 @@ get_header(); ?>
 						<article class="news-post">
 							<header>
 								<h2 class="news-title">
+									<?php
+									// NOTE: This title really should be linking to an external page
+									//       that contains the body of the news item. A custom meta box,
+									//       or custom fields, or a plugin (e.g. Advanced Cusstom Fields)
+									//       should help you define where that link should be entered via
+									//       the admin by the user. Then switch out the href below.
+									?>
 									<a href="<?php the_permalink(); ?>" rel="bookmark" title="Permalink to <?php the_title_attribute(); ?>">
 										<?php the_title(); ?>
 									</a>
 								</h2>
+								<div class="news-date">
+									<?php the_time('F jS, Y'); ?>
+								</div>
 							</header>
 						</article><!-- .entry.news-post -->
 					<?php endwhile; // ends news post loop ?>

@@ -40,12 +40,12 @@ if ( post_password_required() ) {
 		'author' => 
 			'<div class="comment-form-input grid_3 alpha">' .
 				'<label for="author" class="assistive-text">' . __( 'Name' ) . '</label> ' .
-				'<input id="author" name="author" placeholder="Name" type="text" value="' . esc_attr( $commenter['comment_author'] ) . '" tabindex="1"' . $aria_req . ' />' .
+				'<input id="author" name="author" placeholder="Name" type="text" value="' . esc_attr( $commenter['comment_author'] ) . '" tabindex="1"' . (isset($aria_req) ? $aria_req : "") . ' />' .
             '</div><!-- .comment-form-input -->',
 		'email' => 
 			'<div class="comment-form-input grid_3">' .
 				'<label for="email" class="assistive-text">' . __( 'Email' ) . '</label> ' .
-				'<input id="email" name="email" placeholder="Email" type="email" value="' . esc_attr( $commenter['comment_author_email'] ) . '" tabindex="2"' . $aria_req . ' />' .
+				'<input id="email" name="email" placeholder="Email" type="email" value="' . esc_attr( $commenter['comment_author_email'] ) . '" tabindex="2"' . (isset($aria_req) ? $aria_req : "") . ' />' .
             '</div><!-- .comment-form-input -->',
 		'url' => 
 			'<div class="comment-form-input grid_3 omega">' .

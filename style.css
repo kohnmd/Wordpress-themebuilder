@@ -104,7 +104,7 @@ div#site-title, div#site-description {
 }
 h1, #site-title {font-size: 3.5em; }
 h2 {font-size: 2.5em; }
-h3, #site-description {font-size: 2em; }
+h3, #site-description, #news-list h2.news-title {font-size: 2em; }
 h4 {font-size: 1.2em; }
 h5 {font-size: 1em; }
 h6 {font-size: .9em; }
@@ -409,6 +409,7 @@ HEADER
 
 img#logo {
 	display: block;
+	float: left;
 }
 
 /******* SOCIAL ICONS *******/
@@ -829,12 +830,25 @@ BLOG/NEWS STYLES
 	white-space: nowrap;
 }
 
+#news-list h2.news-title {
+	margin-bottom: 0;
+}
+
+#news-list .news-date {
+	font-size: 0.9em;
+	color: #AAA;
+}
+
 #news-list .news-post {
-	margin-bottom: 2em;
+	padding-bottom: 1.25em;
+	margin-bottom: 1.25em;
+	border-bottom: 1px solid #DDD;
 }
 
 #news-list .news-post.last {
+	padding-bottom: 0;
 	margin-bottom: 0;
+	border-bottom: 0;
 }
 
 

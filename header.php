@@ -44,7 +44,7 @@
 	<header id="top">
 		<div id="header-content" class="container_12">
 			<hgroup class="grid_6">
-				<<?php title_container(); ?> id="site-title">
+				<<?php title_container(); ?> id="site-title" class="clearfix">
 					<a href="<?php echo home_url( '/' ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
 						<?php
 						// Here's where the site title/logo goes.
