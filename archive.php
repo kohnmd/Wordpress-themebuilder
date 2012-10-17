@@ -48,8 +48,8 @@ get_header(); ?>
 						?>
 					</article><!-- .entry.blog-post -->
 				<?php endwhile; // ends blog post loop ?>
-				<?php themebuilder_paginate(array('query'=>'blog_query')); // outputs pagination links for the blog_query object ?>
 			</section><!-- #blog-list -->
+			<?php themebuilder_paginate(); // outputs pagination links for the blog_query object ?>
 			
 		<?php else : // else if !have_posts ?>
 			
