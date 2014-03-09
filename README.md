@@ -2,6 +2,8 @@
 
 A simple WordPress theme used for building other themes.
 
+[View a Demo](http://wp.rhymeswithmilk.com/themebuilder/)
+
 Basic functionality and structural styling are already included, giving you a head start on building your theme. For example, if you forget to style the comments in your theme, no biggie: the comments already look okayish. Or if you want to customize the comments, they're stripped-down enough that you won't have to fight against established styles.
 
 Much of the styling and functionality was built with [Insight Designs'](http://insightdesigns.com) typical client in mind.
